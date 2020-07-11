@@ -177,7 +177,6 @@ $this->levels = $this->cfg->get("arenas");
 return true;
 }
 }
-}
 return true;
 }
 public function zipper($player, $name)
