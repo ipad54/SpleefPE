@@ -44,10 +44,12 @@ public $levels = array();
 public function onEnable() {
 if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
-$this->saveResource("messages.yml");
+$this->saveResource("settings.yml");
+$this->saveResource("config.yml");
+
 $this->getScheduler()->scheduleRepeatingTask(new SignTask($this), 20 * 5);
 $this->cfg = new Config($this->getDataFolder()."config.yml", Config::YAML);
-$this->msg = new Config($this->getDataFolder()."messages.yml", Config::YAML);
+$this->msg = new Config($this->getDataFolder()."settings.yml", Config::YAML);
 if($this->cfg->get("arenas")){
 foreach($this->cfg->get("arenas") as $a) {
 $this->game[$a] = false;
