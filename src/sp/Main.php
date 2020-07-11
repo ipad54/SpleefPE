@@ -41,6 +41,8 @@ class Main extends PluginBase implements Listener{
 public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
 public $game = [];
 public $levels = array();
+public $msg;
+public $cfg;
 public function onEnable() {
 if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
