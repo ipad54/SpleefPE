@@ -1,5 +1,5 @@
 # SpleefPE
 This plugin add Spleef mini game to your server
 
-#Usage
+# Usage
 /spleef make <arena name>
