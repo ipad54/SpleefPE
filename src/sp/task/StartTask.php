@@ -21,7 +21,7 @@ public function onRun(int $currentTick) : void {
 if(count($this->p->getServer()->getLevelByName($this->lvl)->getPlayers()) >= 2){
 $this->time--;
 foreach($this->p->getServer()->getLevelByName($this->lvl)->getPlayers() as $pl) {
-$pl->sendTip($this->plugin->getMsg()->get("timer_start".$this->time));
+$pl->sendTip($this->plugin->getMsg()->get("timer_start").$this->time);
 if($this->time <= 0){
 $this->p->setGame($this->lvl, true);
 $this->startg();
