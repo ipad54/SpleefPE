@@ -1,0 +1,10 @@
+name: SpleefPE
+main: sp\Main
+api: 3.0.0
+version: 1.0
+author: ipad54
+commands:
+  spleef:
+    description: spleef
+    permission: spleef.cmd.use
+    default: op
