@@ -36,13 +36,13 @@ use sp\task\GameTask;
 use sp\ResetMap;
 use sp\task\SignTask;
 use pocketmine\event\player\PlayerRespawnEvent;
+use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener{
 public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
 public $game = [];
 public $levels = array();
-public $msg;
-public $cfg;
+public $msg, $cfg, $setup, $level;
 public function onEnable() {
 if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -102,6 +102,10 @@ return true;
 public function onCommand(CommandSender $s, Command $cmd, string $label, array $args) : bool{
 switch($cmd->getName()) {
 case "spleef":
+if(!$s instanceof Player){
+$s->sendMessage("Run this command on game");
+return false;
+}
 if(count($args) < 2){
 $s->sendMessage("/spleef make Arena Name");
 return false;
@@ -254,7 +258,7 @@ $sp = $this->getServer()->getDefaultLevel();
 $winner->teleport(new Position($sp->getSafeSpawn()->x, $sp->getSafeSpawn()->y, $sp->getSafeSpawn()->z, $sp));
 $winner->getInventory()->clearAll();
 
-$api = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+$api = EconomyAPI::getInstance();
 $money = $this->msg->get("money-reward");
 $api->addMoney($winner, $money);
 $this->getResetMap()->reload($lvl);
