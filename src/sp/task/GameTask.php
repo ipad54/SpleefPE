@@ -27,7 +27,7 @@ $this->p->nichya($this->lvl);
 } else {
 foreach($this->p->getServer()->getLevelByName($this->lvl)->getPlayers() as $pl) {
 $c = count($this->p->getServer()->getLevelByName($this->lvl)->getPlayers());
-$pl->sendTip("§l§b$c §aигроков осталось");
+$pl->sendTip(str_replace("{COUNT", $c, $this->p->getMsg()->get("player_count")));
 }
 $this->p->getWinner($this->lvl);
 $this->p->fix($this->lvl);
