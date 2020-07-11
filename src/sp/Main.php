@@ -99,9 +99,7 @@ return true;
 }
 
 public function onCommand(CommandSender $s, Command $cmd, string $label, array $args) : bool{
-if($cmd->getName() !== "spleef"){
-return false;
-}
+if($cmd->getName() == "spleef"){
 if(!$s instanceof Player){
 $s->sendMessage("Run this command on game");
 return false;
@@ -122,6 +120,7 @@ $this->setup[$s->getName()] = 1;
 $s->sendMessage($this->msg->get("touch_spawn_point"));
 return true;
 }
+return true;
 }
 public function SetupArena(PlayerInteractEvent $e) {
 $p = $e->getPlayer();
@@ -175,6 +174,7 @@ $this->game[$this->level] = false;
 unset($this->setup[$s->getName()]);
 $this->levels = $this->cfg->get("arenas");
 return true;
+}
 }
 }
 return true;
