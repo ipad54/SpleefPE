@@ -36,7 +36,6 @@ use sp\task\GameTask;
 use sp\ResetMap;
 use sp\task\SignTask;
 use pocketmine\event\player\PlayerRespawnEvent;
-use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener{
 public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
