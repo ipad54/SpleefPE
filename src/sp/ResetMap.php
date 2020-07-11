@@ -6,6 +6,7 @@ use sp\Main;
 
 Class ResetMap
 {
+    public $plugin;
     public function __construct(Main $plugin){
         $this->plugin = $plugin;
     }
