@@ -42,6 +42,7 @@ public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" 
 public $game = [];
 public $levels = array();
 public function onEnable() {
+if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
 $this->saveResource("messages.yml");
 $this->getScheduler()->scheduleRepeatingTask(new SignTask($this), 20 * 5);
@@ -52,6 +53,10 @@ foreach($this->cfg->get("arenas") as $a) {
 $this->game[$a] = false;
 }
 $this->levels = $this->cfg->get("arenas");
+}
+} else {
+$this->getLogger()->info("EconomyAPI not found!");
+$this->getServer()->getPluginManager()->disablePlugin($this);
 }
 }
 public function onBreak(BlockBreakEvent $e) {
@@ -246,7 +251,8 @@ $winner->teleport(new Position($sp->getSafeSpawn()->x, $sp->getSafeSpawn()->y, $
 $winner->getInventory()->clearAll();
 
 $api = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-$api->addMoney($winner, 25);
+$money = $this->msg->get("money-reward");
+$api->addMoney($winner, $money);
 $this->getResetMap()->reload($lvl);
 $this->game[$level] = false;
 $winner->addTitle($this->msg->get("victory"));
