@@ -10,6 +10,7 @@ use pocketmine\Server;
 use sp\Main;
 
 class SignTask extends Task{
+  public $p;
 
 public function __construct(Main $plugin) {
 $this->p = $plugin;
