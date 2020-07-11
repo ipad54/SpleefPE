@@ -99,8 +99,7 @@ return true;
 }
 
 public function onCommand(CommandSender $s, Command $cmd, string $label, array $args) : bool{
-switch($cmd->getName()) {
-case "spleef":
+if($cmd->getName() == "spleef"){
 if(!$s instanceof Player){
 $s->sendMessage("Run this command on game");
 return false;
@@ -258,9 +257,9 @@ $sp = $this->getServer()->getDefaultLevel();
 $winner->teleport(new Position($sp->getSafeSpawn()->x, $sp->getSafeSpawn()->y, $sp->getSafeSpawn()->z, $sp));
 $winner->getInventory()->clearAll();
 
-$api = EconomyAPI::getInstance();
-$money = $this->msg->get("money-reward");
-$api->addMoney($winner, $money);
+//$api = EconomyAPI::getInstance();
+//$money = $this->msg->get("money-reward");
+//$api->addMoney($winner, $money);
 $this->getResetMap()->reload($lvl);
 $this->game[$level] = false;
 $winner->addTitle($this->msg->get("victory"));
