@@ -99,7 +99,9 @@ return true;
 }
 
 public function onCommand(CommandSender $s, Command $cmd, string $label, array $args) : bool{
-if($cmd->getName() == "spleef"){
+if($cmd->getName() !== "spleef"){
+return false;
+}
 if(!$s instanceof Player){
 $s->sendMessage("Run this command on game");
 return false;
