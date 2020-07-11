@@ -10,6 +10,7 @@ use pocketmine\Server;
 use sp\Main;
 
 class StartTask extends Task{
+  public $p, $lvl, $time, $start;
 
 public function __construct(Main $plugin, string $lvl) {
 $this->p = $plugin;
