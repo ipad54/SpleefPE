@@ -10,6 +10,7 @@ use pocketmine\Server;
 use sp\Main;
 
 class GameTask extends Task{
+  public $p, $lvl, $time;
 
 public function __construct(Main $plugin, string $lvl) {
 $this->p = $plugin;
