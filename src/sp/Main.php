@@ -105,7 +105,7 @@ $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()-
 return true;
 }
 }
-public public function onDrop(PlayerDropitemEvent $e) {
+public function onDrop(PlayerDropitemEvent $e) {
 $p = $e->getPlayer();
 if(in_array($p->getLevel()->getName(), $this->levels)){
 $e->setCancelled();
