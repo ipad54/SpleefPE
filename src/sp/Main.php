@@ -258,9 +258,9 @@ $sp = $this->getServer()->getDefaultLevel();
 $winner->teleport(new Position($sp->getSafeSpawn()->x, $sp->getSafeSpawn()->y, $sp->getSafeSpawn()->z, $sp));
 $winner->getInventory()->clearAll();
 
-//$api = EconomyAPI::getInstance();
-//$money = $this->msg->get("money-reward");
-//$api->addMoney($winner, $money);
+$api = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+$money = $this->msg->get("money-reward");
+$api->addMoney($winner, $money);
 $this->getResetMap()->reload($lvl);
 $this->game[$level] = false;
 $winner->addTitle($this->msg->get("victory"));
