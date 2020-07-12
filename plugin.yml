@@ -3,6 +3,7 @@ main: sp\Main
 api: 3.0.0
 version: 1.0.1
 author: ipad54
+website: https://github.com/ipad54/SpleefPE
 commands:
   spleef:
     description: spleef
