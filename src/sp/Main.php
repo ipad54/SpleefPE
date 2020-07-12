@@ -36,6 +36,7 @@ use sp\task\GameTask;
 use sp\ResetMap;
 use sp\task\SignTask;
 use pocketmine\event\player\PlayerRespawnEvent;
+use pocketmine\event\player\PlayerCommandPreprocessEvent as pcpe;
 
 class Main extends PluginBase implements Listener{
 public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
@@ -79,6 +80,16 @@ return false;
 }
 
 
+public function onPlayerCommand(pcpe $e) : void {
+$p = $e->getPlayer();
+if(in_array($p->getLevel()->getName(), $this->levels)){
+$msg = $e->getMessage();
+$pos = strpos($msg[0], '/');
+if($pos !== false){
+$e->setCancelled();
+}
+}
+}
 public function Join(PlayerLoginEvent $e) {
 $p=$e->getPlayer();
 $lvl = $p->getLevel()->getName();
