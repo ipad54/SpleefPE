@@ -63,6 +63,12 @@ $this->getLogger()->info("EconomyAPI not found!");
 $this->getServer()->getPluginManager()->disablePlugin($this);
 }
 }
+	
+
+public function onPlayerQuit(PlayerQuitEvent $e) : void {
+$p = $e->getPlayer();
+unset($this->setup[$p->getName()]);
+}
 public function onBreak(BlockBreakEvent $e) {
 $p = $e->getPlayer();
 $b = $e->getBlock();
