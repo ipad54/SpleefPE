@@ -35,8 +35,9 @@ use sp\task\StartTask;
 use sp\task\GameTask;
 use sp\ResetMap;
 use sp\task\SignTask;
+use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
-use pocketmine\event\player\PlayerCommandPreprocessEvent as pcpe;
+use pocketmine\event\player\PlayerCommandPreprocessEvent as BlockCmd;
 
 class Main extends PluginBase implements Listener{
 public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
@@ -86,7 +87,7 @@ return false;
 }
 
 
-public function onPlayerCommand(pcpe $e) : void {
+public function onPlayerCommand(BlockCmd $e) : void {
 $p = $e->getPlayer();
 if(in_array($p->getLevel()->getName(), $this->levels)){
 $msg = $e->getMessage();
@@ -101,6 +102,13 @@ $p=$e->getPlayer();
 $lvl = $p->getLevel()->getName();
 if(in_array($lvl, $this->levels)) {
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
+return true;
+}
+}
+public public function onDrop(PlayerDropitemEvent $e) {
+$p = $e->getPlayer();
+if(in_array($p->getLevel()->getName(), $this->levels)){
+$e->setCancelled();
 return true;
 }
 }
