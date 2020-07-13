@@ -46,6 +46,8 @@ public $levels = array();
 public $msg, $cfg, $setup, $level;
 public function onEnable() {
 if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
+$this->getLogger()->info("Plugin SPLEEF enable!");
+$this->getLogger()->info("SPLEEF github: github.com/ipad54/SpleefPE");
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
 $this->saveResource("settings.yml");
 $this->saveResource("config.yml");
