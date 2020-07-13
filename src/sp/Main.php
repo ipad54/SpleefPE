@@ -249,6 +249,8 @@ return false;
 $spawn = $this->cfg->get($lvl."Spawn");
 $p->teleport(new Position($spawn[0], $spawn[1], $spawn[2], $this->getServer()->getLevelByName($lvl)));
 $p->setGamemode(0);
+$p->setAllowFlight(false);
+$p->setFlying(false);
 $p->setHealth($p->getMaxHealth());
 $p->getInventory()->clearAll();
 $this->getServer()->getLevelByName($lvl)->setTime(0);
