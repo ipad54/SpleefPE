@@ -253,6 +253,7 @@ $p->setAllowFlight(false);
 $p->setFlying(false);
 $p->setHealth($p->getMaxHealth());
 $p->getInventory()->clearAll();
+$p->getArmorInventory()->clearAll();
 $this->getServer()->getLevelByName($lvl)->setTime(0);
 if(count($this->getServer()->getLevelByName($lvl)->getPlayers()) == 2){
 $this->getScheduler()->scheduleRepeatingTask(new StartTask($this, $lvl), 20);
