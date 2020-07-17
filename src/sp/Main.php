@@ -46,7 +46,7 @@ public $levels = array();
 public $msg, $cfg, $setup, $level;
 public function onEnable() {
 if($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null){
-$this->getLogger()->info("Plugin SPLEEF enable!");
+$this->getLogger()->info("Plugin SPLEEF enabled!");
 $this->getLogger()->info("SPLEEF github: github.com/ipad54/SpleefPE");
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
 $this->saveResource("settings.yml");
@@ -75,7 +75,7 @@ unset($this->setup[$p->getName()]);
 public function onBreak(BlockBreakEvent $e) {
 $p = $e->getPlayer();
 $b = $e->getBlock();
-$lvl = $p->getLevel()->getName();
+$lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 if(!$this->game[$lvl]) {
 $e->setCancelled();
@@ -91,7 +91,7 @@ return false;
 
 public function onPlayerCommand(BlockCmd $e) : void {
 $p = $e->getPlayer();
-if(in_array($p->getLevel()->getName(), $this->levels)){
+if(in_array($p->getLevel()->getFolderName(), $this->levels)){
 $msg = $e->getMessage();
 $pos = strpos($msg[0], '/');
 if($pos !== false){
@@ -101,7 +101,7 @@ $e->setCancelled();
 }
 public function Join(PlayerLoginEvent $e) {
 $p=$e->getPlayer();
-$lvl = $p->getLevel()->getName();
+$lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
 return true;
@@ -109,14 +109,14 @@ return true;
 }
 public function onDrop(PlayerDropitemEvent $e) {
 $p = $e->getPlayer();
-if(in_array($p->getLevel()->getName(), $this->levels)){
+if(in_array($p->getLevel()->getFolderName(), $this->levels)){
 $e->setCancelled();
 return true;
 }
 }
 public function onDeath(PlayerDeathEvent $e) {
 $p = $e->getPlayer();
-$lvl = $p->getLevel()->getName();
+$lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $e->setDrops([]);
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
@@ -158,11 +158,11 @@ if($this->setup[$s->getName()] == 1){
 
 
 $b = $e->getBlock();
-$level = $p->getLevel()->getName();
+$level = $p->getLevel()->getFolderName();
 $this->cfg->set($level."Spawn", array($b->getX(), $b->getY() + 1, $b->getZ()));
 $this->cfg->save();
 
-$this->level = $s->getLevel()->getName();
+$this->level = $s->getLevel()->getFolderName();
 if(!$this->cfg->get("arenas")) {
 
 $this->cfg->set("arenas", array($this->level));
@@ -323,7 +323,7 @@ if($e instanceof EntityDamageByEntityEvent) {
 $d = $e->getDamager();
 $en = $e->getEntity();
 if($en instanceof Player && $d instanceof Player) {
-$lvl = $en->getLevel()->getName();
+$lvl = $en->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $e->setCancelled();
 return true;
@@ -378,7 +378,7 @@ $this->game[$lvl] = false;
 }
 public function onRespawn(PlayerRespawnEvent $e) {
 $p = $e->getPlayer();
-$lvl = $p->getLevel()->getName();
+$lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
 
@@ -387,7 +387,7 @@ return true;
 }
 public function onPlace(BlockPlaceEvent $e) {
 $p = $e->getPlayer();
-$lvl = $p->getLevel()->getName();
+$lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $e->setCancelled();
 return true;
