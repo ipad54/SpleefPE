@@ -340,7 +340,7 @@ public function sign() {
 if(!$this->cfg->get("arenas")) {
 return false;
 }
-foreach(this->levels as $lvl){
+foreach($this->levels as $lvl){
 $pos = $this->cfg->get($lvl."Sign");
 $this->getServer()->loadLevel($lvl);
 $count = count($this->getServer()->getLevelByName($lvl)->getPlayers());
