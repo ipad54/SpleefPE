@@ -120,6 +120,7 @@ $lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $e->setDrops([]);
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
+$p->getInventory()->clearAll();
 
 return true;
 }
@@ -335,10 +336,11 @@ public function getResetMap() {
 return new ResetMap($this);
 }
 public function sign() {
-foreach($this->levels as $lvl){
+
 if(!$this->cfg->get("arenas")) {
 return false;
 }
+foreach(this->levels as $lvl){
 $pos = $this->cfg->get($lvl."Sign");
 $this->getServer()->loadLevel($lvl);
 $count = count($this->getServer()->getLevelByName($lvl)->getPlayers());
@@ -381,7 +383,7 @@ $p = $e->getPlayer();
 $lvl = $p->getLevel()->getFolderName();
 if(in_array($lvl, $this->levels)) {
 $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
-
+$p->getInventory()->clearAll();
 return true;
 }
 }
