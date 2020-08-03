@@ -134,6 +134,16 @@ class Main extends PluginBase implements Listener
         }
     }
 
+    public function onSpawn(PlayerRespawnEvent $e)
+    {
+        $p = $e->getPlayer();
+        if(isset($this->inventory[$p->getName()]))
+        {
+            $p->getInventory()->setContents($this->inventory[$p->getName()]);
+        }
+        unset($this->inventory[$p->getName()]);
+    }
+
     public function onDeath(PlayerDeathEvent $e)
     {
         $p = $e->getPlayer();
@@ -142,12 +152,6 @@ class Main extends PluginBase implements Listener
             $e->setDrops([]);
             $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
             $p->getInventory()->clearAll();
-            var_dump($this->inventory);
-            if(isset($this->inventory[$p->getName()]))
-            {
-                $p->getInventory()->setContents($this->inventory[$p->getName()]);
-            }
-            unset($this->inventory[$p->getName()]);
 
             return true;
         }
@@ -266,7 +270,6 @@ class Main extends PluginBase implements Listener
             return false;
         }
         $this->inventory[$p->getName()] = $p->getInventory()->getContents(true);
-        var_dump($this->inventory);
         foreach ($this->cfg->get("arenas") as $a) {
             $sign = $this->cfg->get($a . "Sign");
             $x = $e->getBlock()->getX();
@@ -333,6 +336,11 @@ class Main extends PluginBase implements Listener
                 $this->getResetMap()->reload($lvl);
                 $this->game[$level] = false;
                 $winner->addTitle($this->msg->get("victory"));
+                if(isset($this->inventory[$winner->getName()]))
+                {
+                    $winner->getInventory()->setContents($this->inventory[$winner->getName()]);
+                }
+                unset($this->inventory[$winner->getName()]);
             }
         }
     }
