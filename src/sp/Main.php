@@ -44,6 +44,8 @@ class Main extends PluginBase implements Listener
     public $game = [];
     public $levels = array();
 
+    public $inventory;
+
     public $level;
     public $msg, $cfg, $setup;
 
@@ -114,6 +116,11 @@ class Main extends PluginBase implements Listener
         $lvl = $p->getLevel()->getFolderName();
         if (in_array($lvl, $this->levels)) {
             $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
+            if(isset($this->inventory[$p->getName()]))
+            {
+                $p->getInventory()->setContents($this->inventory[$p->getName()]);
+            }
+            unset($this->inventory[$p->getName()]);
             return true;
         }
     }
@@ -135,6 +142,11 @@ class Main extends PluginBase implements Listener
             $e->setDrops([]);
             $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
             $p->getInventory()->clearAll();
+            if(isset($this->inventory[$p->getName()]))
+            {
+                $p->getInventory()->setContents($this->inventory[$p->getName()]);
+            }
+            unset($this->inventory[$p->getName()]);
 
             return true;
         }
@@ -252,6 +264,7 @@ class Main extends PluginBase implements Listener
         if (!$this->cfg->get("arenas")) {
             return false;
         }
+        $this->inventory[$p->getName()] = $p->getInventory()->getContents(true);
         foreach ($this->cfg->get("arenas") as $a) {
             $sign = $this->cfg->get($a . "Sign");
             $x = $e->getBlock()->getX();
