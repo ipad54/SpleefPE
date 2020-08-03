@@ -43,7 +43,7 @@ class Main extends PluginBase implements Listener
     public $prefix = TE::GRAY . "[" . TE::AQUA . TE::BOLD . "" . TE::RED . "Spleef" . TE::RESET . TE::GRAY . "]";
     public $game = [];
     public $levels = array();
-    /** @var Level $level */
+
     public $level;
     public $msg, $cfg, $setup;
 
@@ -202,7 +202,8 @@ class Main extends PluginBase implements Listener
                     $e->setCancelled();
                     $p->sendMessage("Registering arena..... ");
 
-                    $this->level->save(true);
+                    $level = $this->getServer()->getLevelByName($this->level);
+                    $level->save(true);
                     $this->zipper($p, $this->level);
 
 
