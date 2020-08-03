@@ -269,7 +269,6 @@ class Main extends PluginBase implements Listener
         if (!$this->cfg->get("arenas")) {
             return false;
         }
-        $this->inventory[$p->getName()] = $p->getInventory()->getContents(true);
         foreach ($this->cfg->get("arenas") as $a) {
             $sign = $this->cfg->get($a . "Sign");
             $x = $e->getBlock()->getX();
@@ -290,6 +289,7 @@ class Main extends PluginBase implements Listener
                     $p->setAllowFlight(false);
                     $p->setFlying(false);
                     $p->setHealth($p->getMaxHealth());
+                    $this->inventory[$p->getName()] = $p->getInventory()->getContents(true);
                     $p->getInventory()->clearAll();
                     $p->getArmorInventory()->clearAll();
                     $this->getServer()->getLevelByName($lvl)->setTime(0);
