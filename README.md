@@ -9,7 +9,10 @@ Plugin for Spleef to version 1.9 - 1.16 of Minecraft Bedrock Edition. The plugin
 5) Commands: /spleef
 
 # TODO
-[] add ScoreBoard
-[] add setting to keep-inventory
-[] add Spectator Mode
-[] More... 
+[ ] add ScoreBoard
+
+[ ] add setting to keep-inventory
+
+[ ] add Spectator Mode
+
+[ ] More... 
