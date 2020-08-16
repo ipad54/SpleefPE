@@ -280,7 +280,7 @@ class Main extends PluginBase implements Listener
                 $this->getServer()->loadLevel($sign[3]);
 
                 if (count($this->getServer()->getLevelByName($lvl)->getPlayers()) >= 12 || $this->game[$lvl] == true) {
-                    $p->sendMessage($this->msg->get("game_start"));
+                    $p->sendMessage($this->msg->get("game_started"));
                     return false;
                 } else {
                     $spawn = $this->cfg->get($lvl . "Spawn");
@@ -409,7 +409,7 @@ class Main extends PluginBase implements Listener
                         } else {
                             $tile->setText(TE::AQUA . "§7[ §fJoin §7]", TE::YELLOW . "$count / 12", "§f" . $lvl, $this->prefix);
                         }
-                        return true;
+                        
                     }
                 }
             }
