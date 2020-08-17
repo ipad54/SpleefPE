@@ -48,8 +48,9 @@ class Main extends PluginBase implements Listener
 
     public $level;
     public $msg, $cfg, $setup;
+	private $armor;
 
-    public function onEnable()
+	public function onEnable()
     {
         if ($this->getServer()->getPluginManager()->getPlugin("EconomyAPI") !== null) {
             $this->getLogger()->info("Plugin SPLEEF enabled!");
@@ -120,8 +121,14 @@ class Main extends PluginBase implements Listener
             {
                 $p->getInventory()->setContents($this->inventory[$p->getName()]);
             }
-            unset($this->inventory[$p->getName()]);
-            return true;
+            if(isset($this->armor[$p->getName()]))
+			{
+				$p->getArmorInventory()->setContents($this->armor[$p->getName()]);
+			}
+            unset($this->armor[$p->getName()]);
+			unset($this->inventory[$p->getName()]);
+
+			return true;
         }
     }
 
@@ -141,6 +148,11 @@ class Main extends PluginBase implements Listener
         {
             $p->getInventory()->setContents($this->inventory[$p->getName()]);
         }
+		if(isset($this->armor[$p->getName()]))
+		{
+			$p->getArmorInventory()->setContents($this->armor[$p->getName()]);
+		}
+		unset($this->armor[$p->getName()]);
         unset($this->inventory[$p->getName()]);
     }
 
@@ -290,7 +302,8 @@ class Main extends PluginBase implements Listener
                     $p->setFlying(false);
                     $p->setHealth($p->getMaxHealth());
                     $this->inventory[$p->getName()] = $p->getInventory()->getContents(true);
-                    $p->getInventory()->clearAll();
+                    $this->armor[$p->getName()] = $p->getArmorInventory()->getContents(true);
+					$p->getInventory()->clearAll();
                     $p->getArmorInventory()->clearAll();
                     $this->getServer()->getLevelByName($lvl)->setTime(0);
                     if (count($this->getServer()->getLevelByName($lvl)->getPlayers()) == 2) {
@@ -340,6 +353,11 @@ class Main extends PluginBase implements Listener
                 {
                     $winner->getInventory()->setContents($this->inventory[$winner->getName()]);
                 }
+				if(isset($this->armor[$winner->getName()]))
+				{
+					$winner->getArmorInventory()->setContents($this->armor[$p->getName()]);
+				}
+				unset($this->armor[$winner->getName()]);
                 unset($this->inventory[$winner->getName()]);
             }
         }
