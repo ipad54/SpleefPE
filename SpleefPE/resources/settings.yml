@@ -1,0 +1,15 @@
+---
+
+error_missing_world: "Error missing world!"
+touch_spawn_point: "Touch the spawn point!"
+touch_sign: "Touch the sign to register arena!" 
+game_started: "You cannot join!" 
+timer_start: "The game start in {COUNT} seconds"
+game_start_1: "Game start!"
+game_start_2: "Have fun!"
+victory: "§l§7> §aYou Win§7< \n §7> §e+§625$ §7 <"
+time_is_over: "§7§l> §6The time is over§7 <"
+player_count: "Remaining players {COUNT}"
+money-reward: 25
+
+...
