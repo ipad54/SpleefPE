@@ -355,7 +355,7 @@ class Main extends PluginBase implements Listener
                 }
 				if(isset($this->armor[$winner->getName()]))
 				{
-					$winner->getArmorInventory()->setContents($this->armor[$p->getName()]);
+					$winner->getArmorInventory()->setContents($this->armor[$winner->getName()]);
 				}
 				unset($this->armor[$winner->getName()]);
                 unset($this->inventory[$winner->getName()]);
