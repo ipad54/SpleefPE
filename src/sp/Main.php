@@ -122,13 +122,12 @@ class Main extends PluginBase implements Listener
                 $p->getInventory()->setContents($this->inventory[$p->getName()]);
             }
             if(isset($this->armor[$p->getName()]))
-			{
-				$p->getArmorInventory()->setContents($this->armor[$p->getName()]);
-			}
+	    {
+		$p->getArmorInventory()->setContents($this->armor[$p->getName()]);
+	    }
             unset($this->armor[$p->getName()]);
-			unset($this->inventory[$p->getName()]);
-
-			return true;
+            unset($this->inventory[$p->getName()]);
+	    return true;
         }
     }
 
@@ -148,11 +147,11 @@ class Main extends PluginBase implements Listener
         {
             $p->getInventory()->setContents($this->inventory[$p->getName()]);
         }
-		if(isset($this->armor[$p->getName()]))
-		{
-			$p->getArmorInventory()->setContents($this->armor[$p->getName()]);
-		}
-		unset($this->armor[$p->getName()]);
+	if(isset($this->armor[$p->getName()]))
+	{
+	    $p->getArmorInventory()->setContents($this->armor[$p->getName()]);
+	}
+	unset($this->armor[$p->getName()]);
         unset($this->inventory[$p->getName()]);
     }
 
@@ -164,7 +163,6 @@ class Main extends PluginBase implements Listener
             $e->setDrops([]);
             $p->teleport(new Position($this->getServer()->getDefaultLevel()->getSafeSpawn()->x, $this->getServer()->getDefaultLevel()->getSafeSpawn()->y, $this->getServer()->getDefaultLevel()->getSafeSpawn()->z, $this->getServer()->getDefaultLevel()));
             $p->getInventory()->clearAll();
-
             return true;
         }
     }
@@ -205,7 +203,6 @@ class Main extends PluginBase implements Listener
                 $level = $p->getLevel()->getFolderName();
                 $this->cfg->set($level . "Spawn", array($b->getX(), $b->getY() + 1, $b->getZ()));
                 $this->cfg->save();
-
                 $this->level = $s->getLevel()->getFolderName();
                 if (!$this->cfg->get("arenas")) {
 
